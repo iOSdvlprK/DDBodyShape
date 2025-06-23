@@ -22,24 +22,32 @@ struct VerticalDotBar: View {
     var body: some View {
         VStack(spacing: 0) {
             if isSelected {
-                Text("SELECTED")
+                HStack(spacing: 3) {
+                    Text("\(selectedWeight)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    Text("\(selectedWeightUnits)")
+                }
+                .padding(.vertical, 30)
+//                .frame(width: 70, height: 70)
             }
-            GeometryReader { geometry in
-                ZStack(alignment: .bottom) {
-                    Rectangle()
-                        .stroke(lineWidth: 0.5)
-                        .frame(width: 1, height: height)
-                    
-                    // circle + highlight
-                    ZStack {
-                        if isSelected {
-                            Text("highlighted circle")
-                        }
-                        
+            ZStack(alignment: .bottom) {
+                Rectangle()
+                    .stroke(lineWidth: 0.5)
+                    .frame(width: 1, height: height)
+                
+                // circle + highlight
+                ZStack {
+                    if isSelected {
                         Circle()
-                            .frame(width: circleDim, height: circleDim)
+                            .fill(lightGreen)
+                            .frame(width: circleDim + 10, height: circleDim + 10)
                             .offset(y: -height * percent)
                     }
+                    
+                    Circle()
+                        .frame(width: circleDim, height: circleDim)
+                        .offset(y: -height * percent)
                 }
             }
         }
@@ -47,6 +55,6 @@ struct VerticalDotBar: View {
 }
 
 #Preview {
-    VerticalDotBar(percent: 0.6, isSelected: false, height: 100, day: "Mon", amount: 7, offsetY: -5, selectedWeight: 12)
+    VerticalDotBar(percent: 1, isSelected: true, height: 100, day: "Mon", amount: 7, offsetY: -5, selectedWeight: 12)
         .padding()
 }
