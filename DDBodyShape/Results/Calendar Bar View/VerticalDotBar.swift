@@ -18,6 +18,7 @@ struct VerticalDotBar: View {
     var selectedWeightUnits: String = "lb"
     
     let circleDim = 8.0
+    let delta = 10.0
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,7 +30,6 @@ struct VerticalDotBar: View {
                     Text("\(selectedWeightUnits)")
                 }
                 .padding(.vertical, 30)
-//                .frame(width: 70, height: 70)
             }
             ZStack(alignment: .bottom) {
                 Rectangle()
@@ -41,20 +41,35 @@ struct VerticalDotBar: View {
                     if isSelected {
                         Circle()
                             .fill(lightGreen)
-                            .frame(width: circleDim + 10, height: circleDim + 10)
-                            .offset(y: -height * percent)
+                            .frame(width: circleDim + delta, height: circleDim + delta)
+                            .offset(y: -(height - circleDim) * percent)
                     }
                     
                     Circle()
                         .frame(width: circleDim, height: circleDim)
-                        .offset(y: -height * percent)
+                        .offset(y: -(height - circleDim) * percent)
                 }
             }
         }
     }
 }
 
-#Preview {
-    VerticalDotBar(percent: 1, isSelected: true, height: 100, day: "Mon", amount: 7, offsetY: -5, selectedWeight: 12)
-        .padding()
+struct VerticalDotBar_Previews: PreviewProvider {
+    static var previews: some View {
+        HStack(alignment: .bottom) {
+            VerticalDotBar(percent: 0.6, isSelected: false, height: 100, day: "Mon", amount: 7, offsetY: -5, selectedWeight: 12)
+                .padding()
+            VerticalDotBar(percent: 1, isSelected: true, height: 100, day: "Tue", amount: 7, offsetY: -5, selectedWeight: 12)
+                .padding()
+        }
+    }
 }
+
+//#Preview {
+//    HStack(alignment: .bottom) {
+//        VerticalDotBar(percent: 0.6, isSelected: false, height: 100, day: "Mon", amount: 7, offsetY: -5, selectedWeight: 12)
+//            .padding()
+//        VerticalDotBar(percent: 1, isSelected: false, height: 100, day: "Tue", amount: 7, offsetY: -5, selectedWeight: 12)
+//            .padding()
+//    }
+//}
