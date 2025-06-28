@@ -30,7 +30,12 @@ struct ResultView: View {
                 )
             }
             
-            MainActivitiesViews()
+            MainActivitiesViews(activities: [
+                .init(dim: 150, activityName: "Running", activityImage: "figure.run"),
+                .init(dim: 150, activityName: "Biking", activityImage: "figure.cycle"),
+                .init(dim: 150, activityName: "Climbing", activityImage: "figure.climbing"),
+                .init(dim: 150, activityName: "Skating", activityImage: "figure.skating")
+            ])
             
             HStack {
                 Text("Your plan for December, 2025")
