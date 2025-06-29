@@ -13,6 +13,23 @@ struct CurrentActivitiesView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .stroke(Color.black, lineWidth: 1)
+            .overlay {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Image(systemName: activity.activityImage)
+                            .padding()
+                            .background(lightPurple)
+                            .clipShape(Circle())
+                        
+                        Text(activity.activityName)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.horizontal)
+            }
             .frame(width: activity.dim, height: activity.dim)
     }
 }
