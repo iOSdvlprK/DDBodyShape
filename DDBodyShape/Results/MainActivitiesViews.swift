@@ -14,7 +14,7 @@ struct MainActivitiesViews: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(activities) { activity in
-                    Text(activity.activityName)
+                    CurrentActivitiesView(activity: activity)
                 }
             }
             .padding()
@@ -32,7 +32,7 @@ struct Activity: Identifiable {
 #Preview {
     MainActivitiesViews(activities: [
         .init(dim: 150, activityName: "Running", activityImage: "figure.run"),
-        .init(dim: 150, activityName: "Biking", activityImage: "figure.cycle"),
+        .init(dim: 150, activityName: "Biking", activityImage: "figure.outdoor.cycle"),
         .init(dim: 150, activityName: "Climbing", activityImage: "figure.climbing"),
         .init(dim: 150, activityName: "Skating", activityImage: "figure.skating")
     ])

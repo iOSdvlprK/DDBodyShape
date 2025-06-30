@@ -30,24 +30,26 @@ struct ResultView: View {
                 )
             }
             
-            MainActivitiesViews(activities: [
-                .init(dim: 150, activityName: "Running", activityImage: "figure.run"),
-                .init(dim: 150, activityName: "Biking", activityImage: "figure.cycle"),
-                .init(dim: 150, activityName: "Climbing", activityImage: "figure.climbing"),
-                .init(dim: 150, activityName: "Skating", activityImage: "figure.skating")
-            ])
-            
-            HStack {
-                Text("Your plan for December, 2025")
+            VStack(spacing: 0) {
+                MainActivitiesViews(activities: [
+                    .init(dim: 150, activityName: "Running", activityImage: "figure.run"),
+                    .init(dim: 150, activityName: "Biking", activityImage: "figure.outdoor.cycle"),
+                    .init(dim: 150, activityName: "Climbing", activityImage: "figure.climbing"),
+                    .init(dim: 150, activityName: "Skating", activityImage: "figure.skating")
+                ])
                 
-                Spacer()
-                
-                Text("1.8")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Text(selectedWeightUnits)
+                HStack {
+                    Text("Your plan for December, 2025")
+                    
+                    Spacer()
+                    
+                    Text("1.8")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    Text(selectedWeightUnits)
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
             
             HeartRateRow()
             
